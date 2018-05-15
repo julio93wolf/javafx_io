@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import javafx.scene.control.CheckBox?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,8 +10,8 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <CheckBox fx:id="CheckBoxOption1" layoutX="53.0" layoutY="47.0" mnemonicParsing="false" onAction="#onActionCheckBoxOption1" text="CheckBox1" />
-            <JFXCheckBox fx:id="CheckBoxOption2" layoutX="55.0" layoutY="115.0" onAction="#onActionCheckBoxOption2" text="CheckBox2" />
+            <JFXToggleButton fx:id="tglSwitch1" layoutX="14.0" layoutY="71.0" onAction="#onActionToggleButtonSwitch1" text="Switch 1" toggleColor="#c91f47" />
+            <JFXToggleButton fx:id="tglSwitch2" layoutX="14.0" layoutY="131.0" onAction="#onActionToggleButtonSwitch2" text="Switch 2" />
          </children>
       </AnchorPane>
    </children>
