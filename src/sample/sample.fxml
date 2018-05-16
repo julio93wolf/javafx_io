@@ -10,8 +10,8 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <JFXToggleButton fx:id="tglSwitch1" layoutX="14.0" layoutY="71.0" onAction="#onActionToggleButtonSwitch1" text="Switch 1" toggleColor="#c91f47" />
-            <JFXToggleButton fx:id="tglSwitch2" layoutX="14.0" layoutY="131.0" onAction="#onActionToggleButtonSwitch2" text="Switch 2" />
+            <JFXToggleButton fx:id="tglSwitch1" layoutX="36.0" layoutY="29.0" onAction="#onActionToggleButtonSwitch1" text="Switch 1" />
+            <JFXToggleButton fx:id="tglSwitch2" layoutX="36.0" layoutY="107.0" onAction="#onActionToggleButtonSwitch2" text="Switch 2" />
          </children>
       </AnchorPane>
    </children>

@@ -1,59 +1,36 @@
 package sample;
 
 import com.jfoenix.controls.JFXToggleButton;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import org.json.JSONObject;
+import javafx.fxml.Initializable;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import java.net.URI;
-
-public class Controller {
+public class Controller implements Initializable {
 
     @FXML
     JFXToggleButton tglSwitch1,tglSwitch2;
 
-    private Socket socket;
-
-    public Controller () {
-        socket = IO.socket(URI.create("https://juliosocketapp.herokuapp.com:443"));
-        socket.on("server_checked", new Emitter.Listener() {
-            @Override
-            public void call(Object... objects) {
-                try {
-                    JSONObject obj = (JSONObject)objects[0];
-                    System.out.println("OnServerChecked: " + obj.toString());
-                    tglSwitch1.setSelected(obj.getBoolean("checked_1"));
-                    tglSwitch2.setSelected(obj.getBoolean("checked_2"));
-                } catch (Exception e) {
-                    System.out.println("ErrorServerChecked: " + e.toString());
-                }
-            }
-        });
-        socket.connect();
-    }
+    private ClientSocket objClientSocket;
+    private SwitchThread objSwitchThread;
 
     public void onActionToggleButtonSwitch1 (ActionEvent event) {
-        client_checked();
+        objClientSocket.emmitClientChecked();
     }
 
     public void onActionToggleButtonSwitch2 (ActionEvent event) {
-        client_checked();
+        objClientSocket.emmitClientChecked();
     }
 
-    private void client_checked () {
-        try {
-            JSONObject obj = new JSONObject();
-            obj.put("checked_1", tglSwitch1.isSelected());
-            obj.put("checked_2", tglSwitch2.isSelected());
-            socket.emit("client_checked",obj);
-            System.out.println("EmmitClientChecked: " + obj.toString());
-        } catch (Exception e) {
-            System.out.println("ErrorClientChecked: " + e.toString());
-        }
+    public void changeState (Boolean paramState) {
+        objClientSocket.emmitChangeState(paramState);
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        objClientSocket = new ClientSocket(this);
+        objSwitchThread = new SwitchThread(this);
+        objSwitchThread.start();
+    }
 }
-
